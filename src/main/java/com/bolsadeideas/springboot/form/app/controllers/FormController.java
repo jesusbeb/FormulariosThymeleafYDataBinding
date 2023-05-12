@@ -24,7 +24,7 @@ public class FormController {
 	}
 	
 	
-	
+/* Mejoraremos este codigo, por eso se comenta	
 	//Metodo handler. Para procesar los datos del usuario cuando completa el formulario y envia en 
 	//una peticion http post, usamos PostMapping
 	@PostMapping("/form")
@@ -43,7 +43,13 @@ public class FormController {
 		usuario.setUsername(username);
 		usuario.setEmail(email);
 		usuario.setPassword(password);
-		
+*/
+	
+	//El objeto usuario de tipo Usuario lo pasamos como primer argumento para que el form mande en automatico
+	//sus atributos al objeto
+	@PostMapping("/form")
+	public String procesar(Usuario usuario, Model model) {
+	
 		//pasamos el titulo que mostrara el resultado.html
 		model.addAttribute("titulo", "Resultado form");
 		//pasamos el objeto de tipo usuario a la vista

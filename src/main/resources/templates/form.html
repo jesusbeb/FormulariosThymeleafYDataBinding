@@ -13,6 +13,9 @@
 	<!--* th: para indicar que es una ruta de spring
 			* @{/form} es la ruta target del metodo donde se enviara el formulario cuando se de clic en enviar
 			  con method indicamos el tipo de metodo que es "post"
+			  
+			  El formulario se mapea automaticamente a una clase pojo, siempre y cuando los campos "name" del formulario
+			  coincidan con los atributos de clase pojo
 		-->
 	<form th:action="@{/form}" method="post">
 
@@ -24,6 +27,7 @@
 			<label for="username">Username</label>
 
 			<div>
+				<!--en type podria ser email en lugar de text, para validar que sea un correo. Pero la validacion se hara con Spring-->
 				<input type="text" name="username" id="username">
 			</div>
 		</div>
