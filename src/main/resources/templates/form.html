@@ -27,9 +27,15 @@
 			<label for="username">Username</label>
 
 			<div>
-				<!--en type podria ser email en lugar de text, para validar que sea un correo. Pero la validacion se hara con Spring-->
-				<input type="text" name="username" id="username">
+				<!--con th:value mostramos nuevamente el valor ingresado en el campo despues de que se intento enviar el formulario y este contenia errores
+					en otras palabras no pierde la informacion ingresada previamente por el usuario
+				-->
+				<input type="text" name="username" id="username" th:value="${usuario.username}">
 			</div>
+			<!--preguntamos si "error" (hashmap de java) que viene del controller trae errores y si trae errores preguntamos si la key contiene un error para el campo en este caso "username"
+				si hay error lo mostramos con th:text
+			-->
+			<div th:if="${error != null && error.containsKey('username')}" th:text="${error.username}"></div>
 		</div>
 
 		<!--Campo password-->
@@ -38,13 +44,16 @@
 			<div>
 				<input type="password" name="password" id="password">
 			</div>
+			<div th:if="${error != null && error.containsKey('password')}" th:text="${error.password}"></div>
 		</div>
 
 		<div>
 			<label for="email">Correo</label>
 			<div>
-				<input type="text" name="email" id="email">
+				<!--en type podria ser email en lugar de text, para validar que sea un correo. Pero la validacion se hara con Spring-->
+				<input type="text" name="email" id="email" th:value="${usuario.email}">
 			</div>
+			<div th:if="${error != null && error.containsKey('email')}" th:text="${error.email}"></div>
 		</div>
 
 		<!--Boton enviar-->
