@@ -72,6 +72,7 @@ public class FormController {
 		//pasamos el titulo que mostrara el resultado.html
 		model.addAttribute("titulo", "Resultado form");
 		
+/* Se comenta porque se mejorara el codigo. Se automatizara
 		//validamos si hay errores.
 		//Pasamos los errores a la vista con Map del tipo String
 		if(result.hasErrors()) {
@@ -88,6 +89,12 @@ public class FormController {
 			//retornamos a la vista para que vuelva a introducir datos
 			return "form";
 		}
+*/
+		if(result.hasErrors()) {
+			
+			return "form";  
+		}
+		
 		
 
 		//pasamos el objeto de tipo usuario a la vista
