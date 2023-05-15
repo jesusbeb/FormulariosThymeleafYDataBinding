@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
 
@@ -20,6 +22,7 @@ import jakarta.validation.Valid;
 
 //anotamos con controller
 @Controller
+@SessionAttributes("usuario") //(1) le damos el nombre del objeto que se pasa a la vista y se guarda en una sesion http. Todos los datos que contenga independiente si estan o no en el formulario, se mantienen
 public class FormController {
 
 	
@@ -34,7 +37,8 @@ public class FormController {
 		//agregamos valores a nombre y apellido, ya que se enviaran como datos por defecto
 		usuario.setNombre("James");
 		usuario.setApellido("Smith");
-		//este dato no se muestra en el formulario, solo en el resultado.html Representa a una consulta interna a una BD
+		//este dato no se muestra en el formulario. Representa a una consulta interna a una BD. Sin embargo se pierde y se muestra nulo en el resultado
+		//ya que solo se envia lo que se puebla en el form. Asi que hay que solucionarlo (1)
 		usuario.setIdentificador("123.456.789-K");
 		model.addAttribute("titulo", "Formulario usuarios");
 		//pasamos el objeto usuario a la vista
@@ -72,7 +76,8 @@ public class FormController {
 	//contiene los resultados de la validacion en caso de que haya errores y se inyecta de forma automatica mientras la notacion Valid este
 	//y el BindingResult debe estar siempre despues del objeto que valida en este caso el objeto usuario
 	@PostMapping("/form")
-	public String procesar(@Valid Usuario usuario, BindingResult result, Model model) {
+	//(1) SessionStatus nos sirve para limpiar el dato que enviamos internamente despues de que ya se envio
+	public String procesar(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status) {
 	
 		//pasamos el titulo que mostrara el resultado.html
 		model.addAttribute("titulo", "Resultado form");
@@ -103,8 +108,9 @@ public class FormController {
 		
 
 		//pasamos el objeto de tipo usuario a la vista
-		model.addAttribute("usuario", usuario); //el primer username es el nombre del atributo con el que se pasa a la vista, el segundo username es el valor 
-		
+		model.addAttribute("usuario", usuario); //el primer username es el nombre del atributo con el que se pasa a la vista, el segundo username es el valor
+		//(1)completa el proceso y se elimina el objeto usuario de la sesion
+		status.setComplete();
 		return "resultado"; //retorna a la vista o html "resultado"
 	}
 	
