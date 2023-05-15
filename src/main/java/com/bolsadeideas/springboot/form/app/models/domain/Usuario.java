@@ -1,6 +1,8 @@
 package com.bolsadeideas.springboot.form.app.models.domain;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 //Clase usuario con atributos igual a los del formulario
 
@@ -9,18 +11,23 @@ public class Usuario {
 	//Este dato no se mostrara en el formulario, es para manejarlo internamente
 	private String identificador;
 	
-	@NotEmpty
+	@NotEmpty(message = "el nombre no puede quedarse vacio :(")
 	private String nombre;
+	
 	@NotEmpty
 	private String apellido;
 	
 	//indicamos que regla de validacion vamos a usar en cada campo
 	//@NotEmpty valida que sean datos obligatorios
 	@NotEmpty
+	@Size(min=3, max=8) //tamaño del username, solo para string
 	private String username;
+	
 	@NotEmpty
 	private String password;
+	
 	@NotEmpty
+	@Email(message = "correo con formato incorrecto :(") //@Email valida que sea un formato de correo, con message podemos mandar un mensaje de error personalizado
 	private String email;
 	
 	public String getUsername() {
