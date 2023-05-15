@@ -11,6 +11,7 @@ public class Usuario {
 	//Este dato no se mostrara en el formulario, es para manejarlo internamente
 	private String identificador;
 	
+	//estas validaciones quedan sombreadas por las validaciones en el archivo messages.properties
 	@NotEmpty(message = "el nombre no puede quedarse vacio :(")
 	private String nombre;
 	
