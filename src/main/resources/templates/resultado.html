@@ -13,9 +13,13 @@
 		    que	se obtuvieron del form.html
 		-->
 		<ul>
+			<li th:text="${usuario.nombre}"></li>
+			<li th:text="${usuario.apellido}"></li>
 			<li th:text="${usuario.username}"></li>
 			<li th:text="${usuario.password}"></li>
 			<li th:text="${usuario.email}"></li>
+			<!--este campo se obtendria de una BD, no del formulario, se maneja internamente-->
+			<li th:text="${usuario.identificador}"></li>
 		</ul>
 		
 		

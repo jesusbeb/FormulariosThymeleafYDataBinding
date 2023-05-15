@@ -31,6 +31,11 @@ public class FormController {
 	public String form(Model model) {
 		//agregamos un objeto usuario por defecto
 		Usuario usuario = new Usuario();
+		//agregamos valores a nombre y apellido, ya que se enviaran como datos por defecto
+		usuario.setNombre("James");
+		usuario.setApellido("Smith");
+		//este dato no se muestra en el formulario, solo en el resultado.html Representa a una consulta interna a una BD
+		usuario.setIdentificador("123.456.789-K");
 		model.addAttribute("titulo", "Formulario usuarios");
 		//pasamos el objeto usuario a la vista
 		model.addAttribute("usuario", usuario);
