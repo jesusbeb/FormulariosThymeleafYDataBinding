@@ -15,11 +15,11 @@ public class Usuario {
 	//[0-9]{2} significa dos caracteres en un rango de 0 a 9, luego un punto [.], 
 	//luego [\\d] tambien representa cualquier digito de 0 a 9 y que sean tres{3}, luego un guion [-]
 	//[A-Z]{1} representa un caracter de la A a la Z mayusculas
-	@Pattern(regexp="[0-9]{3}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
+	//@Pattern(regexp="[0-9]{3}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}") // Comentamos porque lo validaremos con la clase UsuarioValidador
 	private String identificador;
 	
 	//estas validaciones quedan sombreadas por las validaciones en el archivo messages.properties
-	@NotEmpty(message = "el nombre no puede quedarse vacio :(")
+	//@NotEmpty(message = "el nombre no puede quedarse vacio :(") //comentamos porque lo validaremos con la clase UsuarioValidador
 	private String nombre;
 	
 	@NotEmpty

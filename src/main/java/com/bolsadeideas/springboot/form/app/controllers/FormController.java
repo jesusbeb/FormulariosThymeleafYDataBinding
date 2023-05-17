@@ -3,6 +3,7 @@ package com.bolsadeideas.springboot.form.app.controllers;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
+import com.bolsadeideas.springboot.form.app.validation.UsuarioValidador;
 
 import jakarta.validation.Valid;
 
@@ -25,6 +27,9 @@ import jakarta.validation.Valid;
 @SessionAttributes("usuario") //(1) le damos el nombre del objeto que se pasa a la vista y se guarda en una sesion http. Todos los datos que contenga independiente si estan o no en el formulario, se mantienen
 public class FormController {
 
+	//atributo del tipo UsuarioValidador
+	@Autowired //inyectamos
+	private UsuarioValidador validador;
 	
 	//Metodo handler. Muestra el formulario en pantalla a el usuario, de tipo GetMapping
 	//Aqui se muestra el formulario por primera vez. Si despues cuando se ingresa informacion a los campos y no se envia la informacion
@@ -78,7 +83,9 @@ public class FormController {
 	@PostMapping("/form")
 	//(1) SessionStatus nos sirve para limpiar el dato que enviamos internamente despues de que ya se envio
 	public String procesar(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status) {
-	
+		//Para validar usamos la instancia inyectada y llamamos a su metodo validate
+		//Pasamos el objeto target o sea el usuario y errors que seria el BindingResult
+		validador.validate(usuario, result);
 		//pasamos el titulo que mostrara el resultado.html
 		model.addAttribute("titulo", "Resultado form");
 		
