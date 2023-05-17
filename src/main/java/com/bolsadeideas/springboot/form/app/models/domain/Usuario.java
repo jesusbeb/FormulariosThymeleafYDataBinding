@@ -2,6 +2,7 @@ package com.bolsadeideas.springboot.form.app.models.domain;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 //Clase usuario con atributos igual a los del formulario
@@ -9,6 +10,12 @@ import jakarta.validation.constraints.Size;
 public class Usuario {
 	
 	//Este dato no se mostrara en el formulario, es para manejarlo internamente
+	//Se muestrara ahora en el formulario para hacer una validacion con "expresion regular"
+	//con Pattern usamos el atributo regexp de expresion regular, para que el identificador cumpla las validaciones
+	//[0-9]{2} significa dos caracteres en un rango de 0 a 9, luego un punto [.], 
+	//luego [\\d] tambien representa cualquier digito de 0 a 9 y que sean tres{3}, luego un guion [-]
+	//[A-Z]{1} representa un caracter de la A a la Z mayusculas
+	@Pattern(regexp="[0-9]{3}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
 	private String identificador;
 	
 	//estas validaciones quedan sombreadas por las validaciones en el archivo messages.properties

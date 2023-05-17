@@ -19,6 +19,16 @@
 		-->
 	<form th:action="@{/form}" th:object="${usuario}" method="post">
 
+
+		<div>
+			<label for="nombre">Identificador</label>
+			<div>
+				<input type="text" id="identificador" th:field="*{identificador}">
+			</div>
+			<div th:if="${#fields.hasErrors('identificador')}" th:errors="*{identificador}"></div>
+		</div>
+
+
 		<!--nombre y apellido se enviaran con informacion por defecto-->
 		<div>
 			<label for="nombre">Nombre</label>
