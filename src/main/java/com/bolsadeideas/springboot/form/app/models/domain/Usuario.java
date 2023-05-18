@@ -12,6 +12,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
@@ -59,6 +60,7 @@ public class Usuario {
 	//importar Date de java.util
 	@NotNull
 	@DateTimeFormat(pattern = "yyyy/MM/dd") //mantiene este formato de fecha al dar clic en enviar
+	@Past //Valida que sea una fecha pasada @Future debe ser fecha futura
 	private Date fechaNacimiento;
 	
 	
