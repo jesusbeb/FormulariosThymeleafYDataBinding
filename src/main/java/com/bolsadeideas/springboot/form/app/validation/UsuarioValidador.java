@@ -28,10 +28,10 @@ public class UsuarioValidador implements Validator {
 		//Hacemos un cast de target a tipo Usuario
 		Usuario usuario = (Usuario)target;
 		
-		//usamos la clase helper de utilidad de Spring: ValidationUtils y su metodo rejectIfEmpty que rechaza la validacion con un mensaje de error
+		//usamos la clase helper de utilidad de Spring: ValidationUtils y su metodo rejectIfEmptyOrWhitespace que rechaza el dato introducido si esta vacio o son espacios en blanco
 		//el primer objeto es errors, que se paso por argumento, nombre del campo y/o atributo del objeto usuario
 		//el tercero es un string con el mensaje error que esta registrado en el messages.properties para el campo nombre 
-		ValidationUtils.rejectIfEmpty(errors, "nombre", "NotEmpty.usuario.nombre");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "requerido.usuario.nombre");
 		
 		//Validacion para el identificador. ! significa que sea False la condicion del if
 		//usamos el metodo matches que por argumento recibe una "expresion regular"

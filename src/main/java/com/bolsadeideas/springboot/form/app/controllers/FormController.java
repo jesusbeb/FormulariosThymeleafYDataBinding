@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +32,14 @@ public class FormController {
 	//atributo del tipo UsuarioValidador
 	@Autowired //inyectamos
 	private UsuarioValidador validador;
+	
+	//(2)
+	//metodo que llamamos initBinder y recibe el WebDataBinder
+	//binder.setValidator solo pone las validaciones que tenemos en la clase validador porque set reemplaza el validador por defecto de las anotaciones
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.addValidators(validador); //pasamos el validador para registrarlo. addValidators agrega un nuevo validador sin sustituir el validador por defecto
+	}
 	
 	//Metodo handler. Muestra el formulario en pantalla a el usuario, de tipo GetMapping
 	//Aqui se muestra el formulario por primera vez. Si despues cuando se ingresa informacion a los campos y no se envia la informacion
@@ -85,7 +95,7 @@ public class FormController {
 	public String procesar(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status) {
 		//Para validar usamos la instancia inyectada y llamamos a su metodo validate
 		//Pasamos el objeto target o sea el usuario y errors que seria el BindingResult
-		validador.validate(usuario, result);
+		//validador.validate(usuario, result); //lo comentamos para que se valide en automatico con la anotacion @Valid. Pero tenemos que implementar y registrar el validador en el initBinder (2)
 		//pasamos el titulo que mostrara el resultado.html
 		model.addAttribute("titulo", "Resultado form");
 		

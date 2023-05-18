@@ -1,6 +1,7 @@
 package com.bolsadeideas.springboot.form.app.models.domain;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -18,7 +19,8 @@ public class Usuario {
 	//@Pattern(regexp="[0-9]{3}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}") // Comentamos porque lo validaremos con la clase UsuarioValidador
 	private String identificador;
 	
-	//estas validaciones quedan sombreadas por las validaciones en el archivo messages.properties
+	//estas validaciones quedan sombreadas por las
+	//validaciones en el archivo messages.properties
 	//@NotEmpty(message = "el nombre no puede quedarse vacio :(") //comentamos porque lo validaremos con la clase UsuarioValidador
 	private String nombre;
 	
@@ -26,8 +28,8 @@ public class Usuario {
 	private String apellido;
 	
 	//indicamos que regla de validacion vamos a usar en cada campo
-	//@NotEmpty valida que sean datos obligatorios
-	@NotEmpty
+	//@NotBlanck valida que no este vacio ni tenga espacios en blanco
+	@NotBlank
 	@Size(min=3, max=8) //tamaño del username, solo para string
 	private String username;
 	
