@@ -1,5 +1,7 @@
 package com.bolsadeideas.springboot.form.app.models.domain;
 
+import com.bolsadeideas.springboot.form.app.validation.IdentificadorRegex;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -17,6 +19,8 @@ public class Usuario {
 	//luego [\\d] tambien representa cualquier digito de 0 a 9 y que sean tres{3}, luego un guion [-]
 	//[A-Z]{1} representa un caracter de la A a la Z mayusculas
 	//@Pattern(regexp="[0-9]{3}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}") // Comentamos porque lo validaremos con la clase UsuarioValidador
+	//IdentificadorRegex es una validacion personalizada usando anotacion. Se crea una anotacion (IdentificadorRegex) en el paquete validation y tambien una clase validadora (IdentificadorRegexValidador) como clase normal. (No recomendado, muy revuelto)
+	@IdentificadorRegex
 	private String identificador;
 	
 	//estas validaciones quedan sombreadas por las

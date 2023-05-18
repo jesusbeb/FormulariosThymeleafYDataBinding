@@ -26,7 +26,7 @@ public class UsuarioValidador implements Validator {
 	//en argumentos recibimos el objeto target
 	public void validate(Object target, Errors errors) {
 		//Hacemos un cast de target a tipo Usuario
-		Usuario usuario = (Usuario)target;
+		//Usuario usuario = (Usuario)target; //igual se comenta porque ya no se ocupo al usar la anotacion personalizada Identificador Regex
 		
 		//usamos la clase helper de utilidad de Spring: ValidationUtils y su metodo rejectIfEmptyOrWhitespace que rechaza el dato introducido si esta vacio o son espacios en blanco
 		//el primer objeto es errors, que se paso por argumento, nombre del campo y/o atributo del objeto usuario
@@ -35,11 +35,14 @@ public class UsuarioValidador implements Validator {
 		
 		//Validacion para el identificador. ! significa que sea False la condicion del if
 		//usamos el metodo matches que por argumento recibe una "expresion regular"
+		
+		/* comentamos porque se validara con anotacion personalizada (IdentificadorRegex)
 		if( ! usuario.getIdentificador().matches("[0-9]{3}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}") ) {
 			//usamos error, el metodo rejectValue, pasamos como argumento el nombre del campo y el tercer argumento
 			//es el mensaje de error registrado en messages.properties para el campo "identificador"
 			errors.rejectValue("identificador", "pattern.usuario.identificador");
 		}
+		*/
 	}
 
 }
