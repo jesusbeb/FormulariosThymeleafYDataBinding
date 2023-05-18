@@ -1,5 +1,9 @@
 package com.bolsadeideas.springboot.form.app.models.domain;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.bolsadeideas.springboot.form.app.validation.IdentificadorRegex;
 
 import jakarta.validation.constraints.Email;
@@ -52,6 +56,10 @@ public class Usuario {
 	@Max(5000)
 	private Integer cuenta;
 	
+	//importar Date de java.util
+	@NotNull
+	@DateTimeFormat(pattern = "yyyy/MM/dd") //mantiene este formato de fecha al dar clic en enviar
+	private Date fechaNacimiento;
 	
 	
 	public String getUsername() {
@@ -108,6 +116,14 @@ public class Usuario {
 
 	public void setCuenta(Integer cuenta) {
 		this.cuenta = cuenta;
+	}
+
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 
 	
