@@ -91,6 +91,15 @@
 			</div>
 			<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 		</div>
+		
+		<div>
+			<label for="cuenta">Cuenta</label>
+			<div>
+				<!--en type=number no permite introducir letras, solo numeros-->
+				<input type="number" id="cuenta" th:field="*{cuenta}">
+			</div>
+			<div th:if="${#fields.hasErrors('cuenta')}" th:errors="*{cuenta}"></div>
+		</div>
 
 		<!--Boton enviar-->
 		<div>

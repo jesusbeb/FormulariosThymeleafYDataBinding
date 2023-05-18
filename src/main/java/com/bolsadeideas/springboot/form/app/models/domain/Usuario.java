@@ -3,8 +3,11 @@ package com.bolsadeideas.springboot.form.app.models.domain;
 import com.bolsadeideas.springboot.form.app.validation.IdentificadorRegex;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
@@ -40,9 +43,16 @@ public class Usuario {
 	@NotEmpty
 	private String password;
 	
-	@NotEmpty
+	@NotEmpty //Valida solo objetos String al igual que NotBlank
 	@Email(message = "correo con formato incorrecto :(") //@Email valida que sea un formato de correo, con message podemos mandar un mensaje de error personalizado
 	private String email;
+	
+	@NotNull //Nos sirve para validar objetos diferentes de String. Recomendable usar objetos en lugar de primitivos
+	@Min(5) //Min y max nos serviria para tipos primitivos
+	@Max(5000)
+	private Integer cuenta;
+	
+	
 	
 	public String getUsername() {
 		return username;
@@ -92,6 +102,15 @@ public class Usuario {
 		this.identificador = identificador;
 	}
 
+	public Integer getCuenta() {
+		return cuenta;
+	}
+
+	public void setCuenta(Integer cuenta) {
+		this.cuenta = cuenta;
+	}
+
+	
 	
 	
 }
