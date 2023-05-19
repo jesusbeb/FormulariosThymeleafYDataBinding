@@ -19,6 +19,20 @@
 		-->
 	<form th:action="@{/form}" th:object="${usuario}" method="post">
 
+		<div>
+			<label for="pais">País</label>
+			<div>
+				<!--select es una lista desplegable. th:field esta mapeado al atributo pais de la clase usuario-->
+				<select id="pais" th:field="*{pais}">
+					<!--Opciones de la lista desplegable-->
+					<option value="">- seleccionar -</option>
+					<!--iteramos con each. pais es el objeto que se crea para almacenar los elementos de la lista {paises}-->
+					<!--th:text muestra el elemento pais del objeto que itero-->
+					<option th:each="pais: ${paises}" th:text="${pais}" th:value="${pais}"></option>
+				</select>
+			</div>
+			<div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>
+		</div>
 
 		<div>
 			<label for="nombre">Identificador</label>
@@ -109,6 +123,9 @@
 			</div>
 			<div th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>
 		</div>
+		
+		
+
 
 		<!--Boton enviar-->
 		<div>

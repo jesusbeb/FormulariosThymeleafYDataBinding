@@ -66,6 +66,9 @@ public class Usuario {
 	@Past //Valida que sea una fecha pasada @Future debe ser fecha futura
 	private Date fechaNacimiento;
 	
+	@NotEmpty
+	private String pais;
+	
 	
 	public String getUsername() {
 		return username;
@@ -129,6 +132,14 @@ public class Usuario {
 
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public String getPais() {
+		return pais;
+	}
+
+	public void setPais(String pais) {
+		this.pais = pais;
 	}
 
 	

@@ -1,8 +1,10 @@
 package com.bolsadeideas.springboot.form.app.controllers;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +59,14 @@ public class FormController {
 		binder.registerCustomEditor(String.class, "nombre",  new NombreMayusculaEditor());
 		binder.registerCustomEditor(String.class, "apellido",  new NombreMayusculaEditor());
 	}
+	
+	//Poblamos con datos la lista select con un ArrayList
+	//Metodo que retorna un Array hacia la vista con el nombre "paises"
+	@ModelAttribute("paises")
+	public List<String> paises(){
+		return Arrays.asList("España", "Mexico", "Chile", "Argentina", "Peru", "Colombia", "Venezuela");
+	}
+	
 	
 	//Metodo handler. Muestra el formulario en pantalla a el usuario, de tipo GetMapping
 	//Aqui se muestra el formulario por primera vez. Si despues cuando se ingresa informacion a los campos y no se envia la informacion
