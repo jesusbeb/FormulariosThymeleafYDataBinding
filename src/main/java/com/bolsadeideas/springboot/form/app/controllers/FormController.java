@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.bolsadeideas.springboot.form.app.editors.NombreMayusculaEditor;
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
 import com.bolsadeideas.springboot.form.app.validation.UsuarioValidador;
 
@@ -49,6 +50,12 @@ public class FormController {
 		dateFormat.setLenient(false); //define si el analizador anterior que analizara la fecha es estricto o tolerante al interpretar el patron. false es estricto
 		//registerCustomEditor(tipoDato.class, nuevoObjetoCustomEditor(dateFormat, permiteVacios?)
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+		
+		//Registramos CustomEditor para convertir a mayusculas
+		// .(tipodeDatoAConvertir, "nombreCampo", new Clase personalizada()
+		//binder.registerCustomEditor(String.class, new NombreMayusculaEditor()) si no especificamos el campo en los argumentos, convierte a todos los String
+		binder.registerCustomEditor(String.class, "nombre",  new NombreMayusculaEditor());
+		binder.registerCustomEditor(String.class, "apellido",  new NombreMayusculaEditor());
 	}
 	
 	//Metodo handler. Muestra el formulario en pantalla a el usuario, de tipo GetMapping

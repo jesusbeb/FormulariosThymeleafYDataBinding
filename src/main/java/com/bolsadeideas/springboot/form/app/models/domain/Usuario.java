@@ -34,6 +34,7 @@ public class Usuario {
 	//estas validaciones quedan sombreadas por las
 	//validaciones en el archivo messages.properties
 	//@NotEmpty(message = "el nombre no puede quedarse vacio :(") //comentamos porque lo validaremos con la clase UsuarioValidador
+	//Convertiremos los datos del campo nombre a mayusculas mediante propertyEditors. Creamos un nuevo package (.editors) y dentro una clase NombreMayusculaEditor
 	private String nombre;
 	
 	@NotEmpty
