@@ -1,9 +1,12 @@
 package com.bolsadeideas.springboot.form.app.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,6 +42,13 @@ public class FormController {
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.addValidators(validador); //pasamos el validador para registrarlo. addValidators agrega un nuevo validador sin sustituir el validador por defecto
+		
+		//Custom Editor
+		//una instancia de SimpleDateFormat y agregamos el formato ("yyyy/MM/dd")
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.setLenient(false); //define si el analizador anterior que analizara la fecha es estricto o tolerante al interpretar el patron. false es estricto
+		//registerCustomEditor(tipoDato.class, nuevoObjetoCustomEditor(dateFormat, permiteVacios?)
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
 	}
 	
 	//Metodo handler. Muestra el formulario en pantalla a el usuario, de tipo GetMapping

@@ -59,7 +59,9 @@ public class Usuario {
 	
 	//importar Date de java.util
 	@NotNull
-	@DateTimeFormat(pattern = "yyyy/MM/dd") //mantiene este formato de fecha al dar clic en enviar
+	//En lugar de formatear fechas con anotacion DateTimeFormat, implementamos en el initBinder un custom editor, o sea una clase que permite obtener el string
+	//de la fecha que se envia en el formulario y cambiarle el formato. Esto en el FormController
+	//@DateTimeFormat(pattern = "yyyy-MM-dd") //mantiene este formato de fecha internamente al dar clic en enviar. Tambien valida que no venga vacia la fecha
 	@Past //Valida que sea una fecha pasada @Future debe ser fecha futura
 	private Date fechaNacimiento;
 	
