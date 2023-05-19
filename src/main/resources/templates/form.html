@@ -28,7 +28,10 @@
 					<option value="">- seleccionar -</option>
 					<!--iteramos con each. pais es el objeto que se crea para almacenar los elementos de la lista {paises}-->
 					<!--th:text muestra el elemento pais del objeto que itero-->
-					<option th:each="pais: ${paises}" th:text="${pais}" th:value="${pais}"></option>
+					<!-- <option th:each="pais: ${paises}" th:text="${pais}" th:value="${pais}"></option> -->
+					<!--Ahora iteramos paisesMap y usamos el metodo entrySet() que convierte de tipo Map a tipo Set para que sea iterable -->
+					<!--th:text muestra el value del Map e internamente th:value envia el valor de la key-->
+					<option th:each="pais: ${paisesMap.entrySet()}" th:text="${pais.value}" th:value="${pais.key}"></option>					
 				</select>
 			</div>
 			<div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>

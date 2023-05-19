@@ -67,6 +67,23 @@ public class FormController {
 		return Arrays.asList("España", "Mexico", "Chile", "Argentina", "Peru", "Colombia", "Venezuela");
 	}
 	
+	//paisesMap es como lo pasamos a la vista
+	@ModelAttribute("paisesMap")
+	//Map<tipoNombre, tipoValor>
+	public Map<String, String> paisesMap(){
+		//Objeto Map llamado paises. Map es la interface y HashMap es la implementacion
+		Map<String, String> paises = new HashMap<String, String>();
+		//usamos metodo put(key, value) y pasamos un codigo o identificador y el valor
+		paises.put("ES", "España");
+		paises.put("MX", "Mexico");
+		paises.put("CL", "Chile");
+		paises.put("AR", "Argentina");
+		paises.put("PE", "Peru");
+		paises.put("CO", "Colombia");
+		paises.put("VE", "Venezuela");
+		return paises;
+	}
+	
 	
 	//Metodo handler. Muestra el formulario en pantalla a el usuario, de tipo GetMapping
 	//Aqui se muestra el formulario por primera vez. Si despues cuando se ingresa informacion a los campos y no se envia la informacion
