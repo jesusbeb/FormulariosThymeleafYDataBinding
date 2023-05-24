@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.bolsadeideas.springboot.form.app.validation.IdentificadorRegex;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -66,8 +67,13 @@ public class Usuario {
 	@Past //Valida que sea una fecha pasada @Future debe ser fecha futura
 	private Date fechaNacimiento;
 	
+	/*//Se comenta porque ahora se creara con una clase llamada Pais
 	@NotEmpty
-	private String pais;
+	private String pais;*/
+	
+	//@Valid valida los objetos relacionados
+	@Valid
+	private Pais pais;
 	
 	
 	public String getUsername() {
@@ -134,11 +140,11 @@ public class Usuario {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public String getPais() {
+	public Pais getPais() {
 		return pais;
 	}
 
-	public void setPais(String pais) {
+	public void setPais(Pais pais) {
 		this.pais = pais;
 	}
 

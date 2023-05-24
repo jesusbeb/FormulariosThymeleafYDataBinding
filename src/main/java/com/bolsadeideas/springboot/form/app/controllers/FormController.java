@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.bolsadeideas.springboot.form.app.editors.NombreMayusculaEditor;
+import com.bolsadeideas.springboot.form.app.models.domain.Pais;
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
 import com.bolsadeideas.springboot.form.app.validation.UsuarioValidador;
 
@@ -60,12 +61,30 @@ public class FormController {
 		binder.registerCustomEditor(String.class, "apellido",  new NombreMayusculaEditor());
 	}
 	
+	/* Se comenta porque ahora se hara con clase Pais
 	//Poblamos con datos la lista select con un ArrayList
 	//Metodo que retorna un Array hacia la vista con el nombre "paises"
 	@ModelAttribute("paises")
 	public List<String> paises(){
 		return Arrays.asList("España", "Mexico", "Chile", "Argentina", "Peru", "Colombia", "Venezuela");
+	}*/
+	
+	
+	//Metodo que crea lista de tipo Pais 
+	@ModelAttribute("listaPaises") 
+	public List<Pais> listaPaises(){
+		return Arrays.asList(
+				//creamos instancia por cada uno, reciben 3 argumentos
+				//con esta lista de paises poblaremos el formulario
+				new Pais(1, "ES", "España"), 
+				new Pais(2, "MX", "Mexico"),  
+				new Pais(3, "CL", "Chile"),  
+				new Pais(4, "AR", "Argentina"),  
+				new Pais(5, "PE", "Peru"),  
+				new Pais(6, "CO", "Colombia"),  
+				new Pais(7, "VE", "Venezuela")); 
 	}
+	
 	
 	//paisesMap es como lo pasamos a la vista
 	@ModelAttribute("paisesMap")
