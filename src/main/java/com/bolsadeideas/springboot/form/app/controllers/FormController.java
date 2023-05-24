@@ -24,6 +24,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.bolsadeideas.springboot.form.app.editors.NombreMayusculaEditor;
 import com.bolsadeideas.springboot.form.app.models.domain.Pais;
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
+import com.bolsadeideas.springboot.form.app.services.PaisService;
 import com.bolsadeideas.springboot.form.app.validation.UsuarioValidador;
 
 import jakarta.validation.Valid;
@@ -39,6 +40,10 @@ public class FormController {
 	//atributo del tipo UsuarioValidador
 	@Autowired //inyectamos
 	private UsuarioValidador validador;
+	
+	//Atributo de la interface PaisService
+	@Autowired
+	private PaisService paisService;
 	
 	//(2)
 	//metodo que llamamos initBinder y recibe el WebDataBinder
@@ -70,6 +75,13 @@ public class FormController {
 	}*/
 	
 	
+	@ModelAttribute("listaPaises")
+	public List<Pais> listaPaises(){
+		return paisService.listar();
+	}
+	
+	
+	/*//Se comenta porque ahora se usara PaisServiceImpl
 	//Metodo que crea lista de tipo Pais 
 	@ModelAttribute("listaPaises") 
 	public List<Pais> listaPaises(){
@@ -84,7 +96,7 @@ public class FormController {
 				new Pais(6, "CO", "Colombia"),  
 				new Pais(7, "VE", "Venezuela")); 
 	}
-	
+	*/
 	
 	//paisesMap es como lo pasamos a la vista
 	@ModelAttribute("paisesMap")
