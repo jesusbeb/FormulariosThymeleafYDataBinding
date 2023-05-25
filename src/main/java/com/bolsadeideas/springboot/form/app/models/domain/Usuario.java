@@ -72,7 +72,7 @@ public class Usuario {
 	private String pais;*/
 	
 	//@Valid valida los objetos relacionados
-	@Valid
+	@NotNull //valida completamente el objeto
 	private Pais pais;
 	
 	

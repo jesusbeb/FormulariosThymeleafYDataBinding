@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.bolsadeideas.springboot.form.app.editors.NombreMayusculaEditor;
+import com.bolsadeideas.springboot.form.app.editors.PaisPropertyEditor;
 import com.bolsadeideas.springboot.form.app.models.domain.Pais;
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
 import com.bolsadeideas.springboot.form.app.services.PaisService;
@@ -45,6 +46,11 @@ public class FormController {
 	@Autowired
 	private PaisService paisService;
 	
+	//inyectamos el PaisPropertyEditor
+	@Autowired
+	private PaisPropertyEditor paisEditor;
+	
+	
 	//(2)
 	//metodo que llamamos initBinder y recibe el WebDataBinder
 	//binder.setValidator solo pone las validaciones que tenemos en la clase validador porque set reemplaza el validador por defecto de las anotaciones
@@ -64,6 +70,9 @@ public class FormController {
 		//binder.registerCustomEditor(String.class, new NombreMayusculaEditor()) si no especificamos el campo en los argumentos, convierte a todos los String
 		binder.registerCustomEditor(String.class, "nombre",  new NombreMayusculaEditor());
 		binder.registerCustomEditor(String.class, "apellido",  new NombreMayusculaEditor());
+		
+		//Registramos el PaisPropertyEditor
+		binder.registerCustomEditor(Pais.class, "pais",  paisEditor);
 	}
 	
 	/* Se comenta porque ahora se hara con clase Pais
@@ -76,7 +85,7 @@ public class FormController {
 	
 	
 	@ModelAttribute("listaPaises")
-	public List<Pais> listaPaises(){
+	public List<Pais> listaPaises() {
 		return paisService.listar();
 	}
 	

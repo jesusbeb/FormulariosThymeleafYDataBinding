@@ -22,7 +22,9 @@
 			<li th:text="${usuario.identificador}"></li>
 			<li th:text="${usuario.cuenta}"></li>
 			<!--<li th:text="${usuario.pais}"></li>-->
+			<li th:text="${usuario.pais.id}"></li>
 			<li th:text="${usuario.pais.codigo}"></li>
+			<li th:text="${usuario.pais.nombre}"></li>
 			<!--Damos formato para mostrar la fecha que se envio-->
 			<li th:text="${#dates.format(usuario.fechaNacimiento, 'dd/MM/yyyy')}"></li>
 		</ul>

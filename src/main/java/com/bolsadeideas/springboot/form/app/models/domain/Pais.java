@@ -7,7 +7,7 @@ public class Pais {
 
 	//@NotNull
 	private Integer id;
-	@NotEmpty	
+	//@NotEmpty //comentamos ya que se valida el objeto completo	
 	private String codigo;
 	private String nombre;
 
