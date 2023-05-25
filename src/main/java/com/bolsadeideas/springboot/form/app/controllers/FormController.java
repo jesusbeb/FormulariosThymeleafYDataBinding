@@ -88,6 +88,13 @@ public class FormController {
 		binder.registerCustomEditor(Role.class, "roles",  roleEditor);
 	}
 	
+	//Metodo con una lista de String que contiene los dos generos que se mostraran en el radio buton
+	@ModelAttribute("genero")
+	public List<String> genero(){
+		return Arrays.asList("Hombre", "Mujer");
+	}
+	
+	
 	/* Se comenta porque ahora se hara con clase Pais
 	//Poblamos con datos la lista select con un ArrayList
 	//Metodo que retorna un Array hacia la vista con el nombre "paises"

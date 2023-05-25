@@ -38,6 +38,7 @@
 			<!--Se comentqa lo anterior porque ahora se trabaja con RoleServiceImpl-->
 			<li th:each="role: ${usuario.roles}" th:text="${role.id} + ': ' + ${role.nombre} + ' => ' + ${role.role}"></li>
 			<li th:text="'Habilitado: ' + ${usuario.habilitar}"></li>
+			<li th:text="'Genero: ' + ${usuario.genero}"></li>
 		</ul>
 		
 		
