@@ -182,6 +182,8 @@ public class FormController {
 		//este dato no se muestra en el formulario. Representa a una consulta interna a una BD. Sin embargo se pierde y se muestra nulo en el resultado
 		//ya que solo se envia lo que se puebla en el form. Asi que hay que solucionarlo (1)
 		usuario.setIdentificador("123.456.789-K");
+		//atributo booleano
+		usuario.setHabilitar(true); //por defecto queda habilitado
 		model.addAttribute("titulo", "Formulario usuarios");
 		//pasamos el objeto usuario a la vista
 		model.addAttribute("usuario", usuario);

@@ -19,7 +19,15 @@
 		-->
 	<form th:action="@{/form}" th:object="${usuario}" method="post">
 
+		<!--Campo para el atributo booleano. No se valida-->	
 		<div>
+			<label for="habilitar">Habilitar</label>
+			<div>
+				<input type="checkbox" id="habilitar" th:field="*{habilitar}">
+			</div>
+		</div>
+			
+			
 			<label for="pais">País</label>
 			<div>
 				<!--select es una lista desplegable. th:field esta mapeado al atributo pais de la clase usuario-->

@@ -86,6 +86,8 @@ public class Usuario {
 	@NotEmpty
 	private List<Role> roles;
 	
+	//atributo booleano no se valida, ya que es opcional, se habilita o no se habilita
+	private Boolean habilitar;
 	
 	
 	public String getUsername() {
@@ -166,6 +168,14 @@ public class Usuario {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+
+	public Boolean getHabilitar() {
+		return habilitar;
+	}
+
+	public void setHabilitar(Boolean habilitar) {
+		this.habilitar = habilitar;
 	}
 
 	
