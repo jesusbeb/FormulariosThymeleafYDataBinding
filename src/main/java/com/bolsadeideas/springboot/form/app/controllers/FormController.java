@@ -24,6 +24,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.bolsadeideas.springboot.form.app.editors.NombreMayusculaEditor;
 import com.bolsadeideas.springboot.form.app.editors.PaisPropertyEditor;
+import com.bolsadeideas.springboot.form.app.editors.RolesEditor;
 import com.bolsadeideas.springboot.form.app.models.domain.Pais;
 import com.bolsadeideas.springboot.form.app.models.domain.Role;
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
@@ -57,6 +58,9 @@ public class FormController {
 	@Autowired
 	private RoleService roleService;
 	
+	@Autowired
+	private RolesEditor roleEditor;
+	
 	
 	//(2)
 	//metodo que llamamos initBinder y recibe el WebDataBinder
@@ -80,6 +84,8 @@ public class FormController {
 		
 		//Registramos el PaisPropertyEditor
 		binder.registerCustomEditor(Pais.class, "pais",  paisEditor);
+		
+		binder.registerCustomEditor(Role.class, "roles",  roleEditor);
 	}
 	
 	/* Se comenta porque ahora se hara con clase Pais

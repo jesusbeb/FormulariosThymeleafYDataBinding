@@ -34,7 +34,9 @@
 		<ul>
 			<!--iteramos, en role se guarda el contenido de la lista de la clase Usuario que se poblo en el form
 			th:text muestra el nombre del role que se esta iterando-->
-			<li th:each="role: ${usuario.roles}" th:text="${role}"></li>
+			<!-- <li th:each="role: ${usuario.roles}" th:text="${role}"></li> -->
+			<!--Se comentqa lo anterior porque ahora se trabaja con RoleServiceImpl-->
+			<li th:each="role: ${usuario.roles}" th:text="${role.id} + ': ' + ${role.nombre} + ' => ' + ${role.role}"></li>
 		</ul>
 		
 		
