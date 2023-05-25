@@ -25,8 +25,10 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.bolsadeideas.springboot.form.app.editors.NombreMayusculaEditor;
 import com.bolsadeideas.springboot.form.app.editors.PaisPropertyEditor;
 import com.bolsadeideas.springboot.form.app.models.domain.Pais;
+import com.bolsadeideas.springboot.form.app.models.domain.Role;
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
 import com.bolsadeideas.springboot.form.app.services.PaisService;
+import com.bolsadeideas.springboot.form.app.services.RoleService;
 import com.bolsadeideas.springboot.form.app.validation.UsuarioValidador;
 
 import jakarta.validation.Valid;
@@ -50,6 +52,10 @@ public class FormController {
 	//inyectamos el PaisPropertyEditor
 	@Autowired
 	private PaisPropertyEditor paisEditor;
+	
+	//inyectamos el roleService
+	@Autowired
+	private RoleService roleService;
 	
 	
 	//(2)
@@ -90,6 +96,11 @@ public class FormController {
 		return paisService.listar();
 	}
 	
+	//Metodo para llenar los checkbox que vienen del RoleServiceImpl
+	@ModelAttribute("listaRoles")
+	public List<Role> listaRoles(){
+		return this.roleService.listar();
+	}
 	
 	//Metodo para checkbox implementado con ArrayList
 	@ModelAttribute("listaRolesString") //en la vista se guarda con este nombre lo que se retorna

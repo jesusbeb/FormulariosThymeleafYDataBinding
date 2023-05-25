@@ -76,9 +76,15 @@ public class Usuario {
 	@NotNull //valida completamente el objeto
 	private Pais pais;
 	
+	/*
 	//Atributo para los roles (checkbox). Lista que contiene String
 	@NotEmpty //Asi se valida una la lista
 	private List<String> roles;
+	*/
+	
+	//Ahora se crea una Lista con objetos de tipo Role
+	@NotEmpty
+	private List<Role> roles;
 	
 	
 	
@@ -154,11 +160,11 @@ public class Usuario {
 		this.pais = pais;
 	}
 
-	public List<String> getRoles() {
+	public List<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<String> roles) {
+	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
 
