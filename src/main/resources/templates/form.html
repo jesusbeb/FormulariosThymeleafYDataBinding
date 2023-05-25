@@ -44,11 +44,17 @@
 			<label>Roles</label>
 			<!--Iteramos el div y por lo tanto se itera el input. Esto para mostrar un checkbox por cada elemento del ArrayList
 			en role se almacena cada elemento de listaRolesString -->
-			<div th:each="role: ${listaRolesString}">
-				<!--th:value muestra el valor de role del th:each. th:value pasa su valor a th:field y a su vez lo pasa a la lista en la clase Usuario-->
-				<input type="checkbox" th:field="*{roles}" th:value="${role}">
-				<!--th:for="${#ids.prev('roles')}" permite que al hacer clic sobre el texto, se seleccione el checkbox-->
-				<label th:for="${#ids.prev('roles')}" th:text="${role}"></label>
+			<!-- <div th:each="role: ${listaRolesString}"> -->
+				<!--Se comento lo anterior que trabaja con ArrayList. Ahora trabaja con Map -->
+				<div th:each="role: ${listaRolesMap.entrySet()}">
+				<!-- el th:value muestra el valor de role del th:each. th:value pasa su valor a th:field y a su vez lo pasa a la lista en la clase Usuario-->
+				<!-- <input type="checkbox" th:field="*{roles}" th:value="${role}"> -->
+				<!--Igual se comenta lo anterior porque ahora trabaja con Map. Enviamos la llave del map (key)-->
+				<input type="checkbox" th:field="*{roles}" th:value="${role.key}">
+				<!-- el th:for="${#ids.prev('roles')}" permite que al hacer clic sobre el texto, se seleccione el checkbox-->
+				<!-- <label th:for="${#ids.prev('roles')}" th:text="${role}"></label> -->
+				<!-- Se comena lo anterior porque ahora trabaja con Map-->
+				<label th:for="${#ids.prev('roles')}" th:text="${role.value}"></label>
 			</div>
 			<div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
 		</div>

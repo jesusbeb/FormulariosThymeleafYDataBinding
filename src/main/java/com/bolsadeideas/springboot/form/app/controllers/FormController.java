@@ -91,7 +91,7 @@ public class FormController {
 	}
 	
 	
-	//Metodo para checkbox con roles
+	//Metodo para checkbox implementado con ArrayList
 	@ModelAttribute("listaRolesString") //en la vista se guarda con este nombre lo que se retorna
 	public List<String> listaRolesString(){
 		//creamos una lista con las opciones que mostraran los checkbox
@@ -100,6 +100,19 @@ public class FormController {
 		roles.add("ROLE_USER");
 		roles.add("ROLE_MODERATOR");
 		return roles; //se retorna roles
+	}
+	
+	//Metodo para checkbox implementado con Map
+	@ModelAttribute("listaRolesMap")
+	//Map<tipoNombre, tipoValor>
+	public Map<String, String> listaRolesMap(){
+		//Objeto Map llamado roles. Map es la interface y HashMap es la implementacion
+		Map<String, String> roles = new HashMap<String, String>();
+		//usamos metodo put(key, value) y pasamos un codigo o identificador y el valor
+		roles.put("ROLE_USER", "Usuario");
+		roles.put("ROLE_ADMIN", "Administrador");
+		roles.put("ROLE_MODERATOR", "Moderador");
+		return roles;
 	}
 	
 	
