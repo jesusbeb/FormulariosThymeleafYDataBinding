@@ -29,6 +29,14 @@
 			<li th:text="${#dates.format(usuario.fechaNacimiento, 'dd/MM/yyyy')}"></li>
 		</ul>
 		
+		<!--Creamos otra lista para mostrr el contenido del ArrayList-->
+		<div>Roles</div>
+		<ul>
+			<!--iteramos, en role se guarda el contenido de la lista de la clase Usuario que se poblo en el form
+			th:text muestra el nombre del role que se esta iterando-->
+			<li th:each="role: ${usuario.roles}" th:text="${role}"></li>
+		</ul>
+		
 		
 	</body>	
 </html>

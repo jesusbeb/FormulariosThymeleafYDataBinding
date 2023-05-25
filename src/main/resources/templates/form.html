@@ -23,7 +23,7 @@
 			<label for="pais">País</label>
 			<div>
 				<!--select es una lista desplegable. th:field esta mapeado al atributo pais de la clase usuario-->
-				<!--Ahora se mapea directamente al objeto pais-->
+				<!--Ahora se mapea directamente al objeto pais, osea completo-->
 				<select id="pais" th:field="*{pais}">
 					<!--Opciones de la lista desplegable-->
 					<option value="">- seleccionar -</option>
@@ -38,6 +38,19 @@
 				</select>
 			</div>
 			<div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>
+		</div>
+		
+		<div>
+			<label>Roles</label>
+			<!--Iteramos el div y por lo tanto se itera el input. Esto para mostrar un checkbox por cada elemento del ArrayList
+			en role se almacena cada elemento de listaRolesString -->
+			<div th:each="role: ${listaRolesString}">
+				<!--th:value muestra el valor de role del th:each. th:value pasa su valor a th:field y a su vez lo pasa a la lista en la clase Usuario-->
+				<input type="checkbox" th:field="*{roles}" th:value="${role}">
+				<!--th:for="${#ids.prev('roles')}" permite que al hacer clic sobre el texto, se seleccione el checkbox-->
+				<label th:for="${#ids.prev('roles')}" th:text="${role}"></label>
+			</div>
+			<div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
 		</div>
 
 		<div>

@@ -1,6 +1,7 @@
 package com.bolsadeideas.springboot.form.app.controllers;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -87,6 +88,18 @@ public class FormController {
 	@ModelAttribute("listaPaises")
 	public List<Pais> listaPaises() {
 		return paisService.listar();
+	}
+	
+	
+	//Metodo para checkbox con roles
+	@ModelAttribute("listaRolesString") //en la vista se guarda con este nombre lo que se retorna
+	public List<String> listaRolesString(){
+		//creamos una lista con las opciones que mostraran los checkbox
+		List<String> roles = new ArrayList<>();
+		roles.add("ROLE_ADMIN");
+		roles.add("ROLE_USER");
+		roles.add("ROLE_MODERATOR");
+		return roles; //se retorna roles
 	}
 	
 	
