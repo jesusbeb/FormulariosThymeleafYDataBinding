@@ -74,7 +74,9 @@
 				<!--Igual se comenta lo anterior porque ahora trabaja con Map. Enviamos la llave del map (key)-->
 				<!-- <input type="checkbox" th:field="*{roles}" th:value="${role.key}"> -->
 				<!-- Se comenta lo anterior porque ahora se trabaja con RoleServiceImpl-->
-				<input type="checkbox" th:field="*{roles}" th:value="${role.id}"> 
+				<!-- en th:checked implementamos un helper de thymeleaf que recibe dos argumentos: la lista y el role que deberia estar contenido en la lista que se itera-->
+				<input type="checkbox" th:field="*{roles}" th:value="${role.id}"
+				th:checked="${#lists.contains(usuario.roles, role)}"> 
 				<!-- el th:for="${#ids.prev('roles')}" permite que al hacer clic sobre el texto, se seleccione el checkbox-->
 				<!-- <label th:for="${#ids.prev('roles')}" th:text="${role}"></label> -->
 				<!-- Se comenta lo anterior porque ahora trabaja con Map-->
