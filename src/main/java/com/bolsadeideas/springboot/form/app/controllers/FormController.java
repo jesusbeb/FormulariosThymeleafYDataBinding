@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -234,12 +235,12 @@ public class FormController {
 	//y el BindingResult debe estar siempre despues del objeto que valida en este caso el objeto usuario
 	@PostMapping("/form")
 	//(1) SessionStatus nos sirve para limpiar el dato que enviamos internamente despues de que ya se envio
-	public String procesar(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status) {
+	public String procesar(@Valid Usuario usuario, BindingResult result, Model model) { //, SessionStatus status) { El sesion status se quita porque ahora se maneja en el metodo Status
 		//Para validar usamos la instancia inyectada y llamamos a su metodo validate
 		//Pasamos el objeto target o sea el usuario y errors que seria el BindingResult
 		//validador.validate(usuario, result); //lo comentamos para que se valide en automatico con la anotacion @Valid. Pero tenemos que implementar y registrar el validador en el initBinder (2)
 		//pasamos el titulo que mostrara el resultado.html
-		model.addAttribute("titulo", "Resultado form");
+		//model.addAttribute("titulo", "Resultado form"); //se comenta porque se pasa este titulo al metodo ver
 		
 /* Se comenta porque se mejorara el codigo. Se automatizara
 		//validamos si hay errores.
@@ -254,23 +255,44 @@ public class FormController {
 				errores.put(err.getField(), "El campo ".concat(err.getField()).concat(" ").concat(err.getDefaultMessage()));
 			});
 			//Pasamos a la vista lo anterior, o sea mostramos los errores al usuario
-			model.addAttribute("error", errores);
+			model.addAttribute("error", errores); 
 			//retornamos a la vista para que vuelva a introducir datos
 			return "form";
 		}
 */
 		if(result.hasErrors()) {
-			
+			model.addAttribute("titulo", "Resultado form"); //lo pasamos aqui ya que solo se mostrara cuando ocurra un error para validar
 			return "form";  
 		}
 		
 		
 
 		//pasamos el objeto de tipo usuario a la vista
-		model.addAttribute("usuario", usuario); //el primer username es el nombre del atributo con el que se pasa a la vista, el segundo username es el valor
+		//el objeto usaurio ahora lo quitamos porque ya no lo pasamos a la vista
+		//model.addAttribute("usuario", usuario); //el primer username es el nombre del atributo con el que se pasa a la vista, el segundo username es el valor
 		//(1)completa el proceso y se elimina el objeto usuario de la sesion
-		status.setComplete();
-		return "resultado"; //retorna a la vista o html "resultado"
+		//status.setComplete(); //se comenta porque igual se pasa al metodo ver
+		//return "resultado"; //retorna a la vista o html "resultado"
+		return "redirect:/ver"; //redirije a ver, por lo tanto hace nuevo request
+	}
+	
+	
+	/* 
+	 * Cuando se actualiza en el resultado despues de haber enviado el formulario, se vuelve a enviar la informacion. Esto esta mal.
+	 * Se redirige a este nuevo link "ver" el resultado del formulario, asi cuando se da en actualizar se genera una nueva peticion
+	 * Metodo del controlador donde se maneja el resultado
+	 */
+	@GetMapping("/ver")
+	//inyectamos el usuario y lo obtenemos del SessionAttribute. Como el usuario esta en el SessionAttribute, tambien esta en la vista, por lo tanto no es necesario pasarlo con el Model
+	public String ver(@SessionAttribute(name="usuario", required = false) Usuario usuario, Model model, SessionStatus status) {
+		
+		if(usuario == null) {
+			return "redirect:/form";
+		}
+		model.addAttribute("titulo", "Resultado form");
+		
+		status.setComplete(); 
+		return "resultado";
 	}
 	
 }
