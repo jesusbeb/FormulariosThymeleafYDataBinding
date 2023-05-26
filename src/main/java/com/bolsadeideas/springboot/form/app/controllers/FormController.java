@@ -195,7 +195,7 @@ public class FormController {
 		usuario.setValorSecreto("Algun valor secreto..."); //asignamos un valor al atributo valor secreto
 		
 		//Pasamos por defecto estos valores de Pais y Role al formulario
-		usuario.setPais(new Pais(3, "CL", "Chile")); //estamos asignando el objeto completo al formulario. Por lo que hay que sobreescribir el metodo toString de la clase Pais
+		usuario.setPais(new Pais(2, "MX", "México")); //estamos asignando el objeto completo al formulario. Por lo que hay que sobreescribir el metodo toString de la clase Pais
 		usuario.setRoles(Arrays.asList(new Role(2, "Usuario", "ROLE_USER"), new Role(3, "Moderador", "ROLE_MODERATOR"))); //implemetamos el metodo equals en la clase Role
 		
 		model.addAttribute("titulo", "Formulario usuarios");
