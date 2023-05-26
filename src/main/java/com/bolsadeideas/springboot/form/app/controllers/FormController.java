@@ -191,6 +191,8 @@ public class FormController {
 		usuario.setIdentificador("123.456.789-K");
 		//atributo booleano
 		usuario.setHabilitar(true); //por defecto queda habilitado
+		usuario.setValorSecreto("Algun valor secreto..."); //asignamos un valor al atributo valor secreto
+		
 		model.addAttribute("titulo", "Formulario usuarios");
 		//pasamos el objeto usuario a la vista
 		model.addAttribute("usuario", usuario);
