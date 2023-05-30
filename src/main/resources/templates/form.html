@@ -13,9 +13,16 @@
 <body>
 	
 	<!--Mostramos el tiempo transcurrido que se calculo-->
-	<div class="aler alert-success">
+	<!-- <div class="aler alert-success">
 		<span th:text="'Tiempo Transcurrido: ' +${tiempoTranscurrido} + ' en milisegundos'"></span>
-	</div>
+	</div> -->	
+	<!--
+		Se comento lo anterior ya que se reautilizara ese fragmento de codigo, para lo cual se creara una plantilla
+		que contenga ese codigo y se pueda jalar en el resultado.html y aqui de la siguiente manera (a esto tambien se
+		le conoce como fragment en Thymeleaf, se creara el archivo en templates/components/tiempo.html)
+	-->
+	<!--con th:replace damos la ubicacion del archivo que tiene el fragmento :: nombre o identificador del fragmento-->
+	<section th:replace="componentes/tiempo :: interceptor"></section>
 
 	<h3 th:text="${titulo}"></h3>
 

@@ -20,7 +20,9 @@ public class MvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		//usamos registry.addInterceptor y le pasamos el objeto registry que recibimos por argumento
-		registry.addInterceptor(tiempoTranscurridoInterceptor);
+		//.addPathPatterns signfica agregar patron de rutas, en este caso se agrega a lo que venga despues de form/
+		//por lo tanto ahora no se mostrara el tiempo transcurrido en /ver que contiene a resultado.html
+		registry.addInterceptor(tiempoTranscurridoInterceptor).addPathPatterns("/form/**");
 	}
 	
 }

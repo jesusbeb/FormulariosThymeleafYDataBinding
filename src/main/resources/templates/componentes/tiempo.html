@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+	<!--con th:fragment damos un identificador o nombre al fragmento o codigo que reutilizaremos-->
+	<section th:fragment="interceptor">
+		<!--con th:if comprobamos si tiempoTranscurrido es diferente de null se muestra el siguiente span, si es null no se muestra,
+		ya que como ahora tiempoTranscurrido no se muestra para resultado.html, muestra la leyenda Tiempo transcurrido: null. Pero con el if ya no se muestra nada-->
+		<div class="alert alert-success" th:if="${tiempoTranscurrido != null}">
+			<span th:text="'Tiempo Transcurrido: ' +${tiempoTranscurrido} + ' en milisegundos'"></span>
+		</div>
+	</section>
+	
+</body>
+
+</html>
