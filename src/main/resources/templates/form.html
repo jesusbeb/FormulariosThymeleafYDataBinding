@@ -11,6 +11,11 @@
 </head>
 
 <body>
+	
+	<!--Mostramos el tiempo transcurrido que se calculo-->
+	<div class="aler alert-success">
+		<span th:text="'Tiempo Transcurrido: ' +${tiempoTranscurrido} + ' en milisegundos'"></span>
+	</div>
 
 	<h3 th:text="${titulo}"></h3>
 
